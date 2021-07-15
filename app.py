@@ -93,7 +93,7 @@ def predict_from_model(image,model,labels):
     return prediction
 
 #Dictionnaire des lettres arabes    
-dictio_lettres={'a':'أ','b':'ب','d':'د','h':'ه','w':'و'}
+#dictio_lettres={'a':'أ','b':'ب','d':'د','h':'ه','w':'و'}
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -210,7 +210,7 @@ def upload_image():
             fig.add_subplot(grid[i])
             if i==pos:
                 caracter = np.array2string(predict_from_model(character,model_lettres,labels_lettres))
-                title=dictio_lettres[caracter.strip("'[]")]
+                title=caracter.strip("'[]")
                 print(title)
                 det.append((i,caracter.strip("'[]")))
             else:
