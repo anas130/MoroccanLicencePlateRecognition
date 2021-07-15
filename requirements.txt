@@ -1,9 +1,9 @@
 Flask==1.1.1
 gunicorn==19.9.0
 tensorflow==2.4.1
-matplotlib>=3.4.2
+matplotlib==3.4.2
 Werkzeug==0.15.5
 numpy==1.9.2
 opencv-python==4.5.3.56
-scikit-learn>=0.18
+scikit-learn==0.18
 matplotlib==1.4.3
