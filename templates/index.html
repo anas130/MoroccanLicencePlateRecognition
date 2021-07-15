@@ -1,0 +1,52 @@
+
+<html>
+<head>
+<title>Python Flask Upload and display image</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> 
+ <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">   -->   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body style="text-align:center">
+<img src="{{ehtp_image}}" style="width:150px; height:100px;">
+<p><h1 align="center" style="font-size:20px">Localisation et reconnaissance de plaques d'immatriculation des véhicules marocains</h1></p>
+<div class="container">
+<div class="row" align="center">
+    <h2 style="font-size:15px">Choisissez une image</h2>
+    <p>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </p>
+    {% if filename %}
+        <div align="center">
+            <img src="{{ url_for('display_image', filename=filename) }}">
+            <br>
+            <p style="font-size:35px">
+            {{ prediction_text }}
+            </p>
+        </div>
+    {% endif %}
+    <form method="post" action="/" enctype="multipart/form-data" align="center" style="text-align:center">
+        <dl>
+            <p>
+                <input type="file" name="file" class="form-control" autocomplete="off" required style="width:50%">
+            </p>
+        </dl>
+        <p>
+            <input type="submit" value="Submit" class="btn btn-primary btn-block btn-large" style="width:50%" >
+        </p>
+        
+    </form>
+    
+</div>
+</div>
+
+
+</body>
+</html>
