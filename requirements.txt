@@ -3,8 +3,8 @@ gunicorn==19.9.0
 tensorflow
 matplotlib==3.4.2
 Werkzeug==0.15.5
-numpy
+numpy>= 1.6.1
 opencv-python==4.5.3.56
 scikit-learn==0.18
 keras
-scipy
+scipy>= 0.9
