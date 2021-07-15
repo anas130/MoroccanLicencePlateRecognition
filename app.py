@@ -1,21 +1,21 @@
 #app.py
 from flask import Flask, flash, request, redirect, url_for, render_template
-import urllib.request
+
 from werkzeug.utils import secure_filename
-from tensorflow import keras
+
 import numpy as np
 import os
 import matplotlib.pyplot as plt
-from keras.preprocessing.image import load_img, img_to_array
+
 from keras import backend as K
 import cv2
 import matplotlib.gridspec as gridspec
-from os.path import splitext, basename
+from os.path import splitext
 from keras.models import model_from_json
-from keras.applications.mobilenet_v2 import preprocess_input
+
 from sklearn.preprocessing import LabelEncoder
 from local_utils import detect_lp
-import glob
+
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 K.set_learning_phase(0)
@@ -92,8 +92,7 @@ def predict_from_model(image,model,labels):
     prediction = labels.inverse_transform([np.argmax(model.predict(image[np.newaxis,:]))])
     return prediction
 
-#Dictionnaire des lettres arabes    
-#dictio_lettres={'a':'أ','b':'ب','d':'د','h':'ه','w':'و'}
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
