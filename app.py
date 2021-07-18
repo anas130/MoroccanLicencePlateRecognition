@@ -7,7 +7,7 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 
-from keras import backend as K
+#from keras import backend as K
 import cv2
 import matplotlib.gridspec as gridspec
 from os.path import splitext
@@ -18,7 +18,7 @@ from local_utils import detect_lp
 
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-K.set_learning_phase(0)
+#K.set_learning_phase(0)
 app = Flask(__name__)
 
 UPLOAD_FOLDER = 'static/uploads/'
