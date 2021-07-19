@@ -1,17 +1,19 @@
 
 <html>
 <head>
-<title>Python Flask Upload and display image</title>
+<title>Moroccan ALPR</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> 
  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">   -->   
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body style="text-align:center">
-<img src="{{ehtp_image}}" style="width:150px; height:100px;">
+<img src="{{ehtp_image}}" style="width:150px; height:80px;">
 <p><h1 align="center" style="font-size:20px">Localisation et reconnaissance de plaques d'immatriculation des véhicules marocains</h1></p>
 <div class="container">
+<h2 style="font-size:15px">Choisir une image</h2>
+(Types d'images autorisés - png, jpg, jpeg, gif)
 <div class="row" align="center">
-    <h2 style="font-size:15px">Choisissez une image</h2>
+    
     <p>
         {% with messages = get_flashed_messages() %}
           {% if messages %}
@@ -33,13 +35,14 @@
         </div>
     {% endif %}
     <form method="post" action="/" enctype="multipart/form-data" align="center" style="text-align:center">
-        <dl>
+        <dl>  
             <p>
+            
                 <input type="file" name="file" class="form-control" autocomplete="off" required style="width:50%">
             </p>
         </dl>
         <p>
-            <input type="submit" value="Submit" class="btn btn-primary btn-block btn-large" style="width:50%" >
+            <input type="submit" value="Predict" class="btn btn-primary btn-block btn-large" style="width:50%" >
         </p>
         
     </form>

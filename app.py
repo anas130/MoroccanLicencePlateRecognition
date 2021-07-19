@@ -1,6 +1,6 @@
 #app.py
 from flask import Flask, flash, request, redirect, url_for, render_template
-
+from flask_ngrok import run_with_ngrok
 from werkzeug.utils import secure_filename
 
 import numpy as np
@@ -20,6 +20,7 @@ from local_utils import detect_lp
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 #K.set_learning_phase(0)
 app = Flask(__name__)
+run_with_ngrok(app)
 
 UPLOAD_FOLDER = 'static/uploads/'
 
@@ -121,8 +122,15 @@ def upload_image():
             # plate_image = cv2.convertScaleAbs(LpImg[0], alpha=(255.0))
             # cv2.imwrite((os.path.join(app.config['UPLOAD_FOLDER'],filename)),plate_image)
         except:
-            print("No plate was detected..")
-            return render_template('index.html', filename=filename,prediction_text='No plate was detected..')
+            print("Aucune plaque détectée..")
+# =============================================================================
+#             noplt = cv2.imread(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#             resize = cv2.resize(noplt,(500,500))
+#             noplate = (os.path.join(app.config['UPLOAD_FOLDER'],filename))
+#             cv2.imwrite((os.path.join(app.config['UPLOAD_FOLDER'],noplate)),resize)
+# =============================================================================
+            ehtpim = os.path.join(app.config['EHTP_FOLDER'], 'LogoEHTP.jpg')
+            return render_template('index.html', filename=filename,prediction_text='Aucune plaque détectée..', ehtp_image=ehtpim)
         
         if (len(LpImg)): #Vérifier si qu'une plaque au moins est bien détectée
 
@@ -223,7 +231,7 @@ def upload_image():
         new_file = filename.split('.')[0]+'plt.'+filename.split('.')[1]
         cv2.imwrite((os.path.join(app.config['UPLOAD_FOLDER'],new_file)),LpImg[0]*255)
         # sorte = sorted(det, key=lambda tup: tup[0],reverse=True)
-        prediction_text = "Le modèle donne la prédiction suivante: "+' '.join([i[1] for i in det])
+        prediction_text = "La prédiction donne: "+' '.join([i[1] for i in det])
         # flash('Image successfully uploaded and displayed below')
         ehtpim = os.path.join(app.config['EHTP_FOLDER'], 'LogoEHTP.jpg')
         return render_template('index.html', filename=new_file,prediction_text=prediction_text, ehtp_image=ehtpim)
